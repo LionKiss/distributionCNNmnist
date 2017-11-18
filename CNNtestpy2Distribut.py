@@ -72,11 +72,11 @@ def main(_):
         server.join()
     elif FLAGS.job_name == "worker":
         print "wk pod join"
-        mnist = input_data.read_data_sets('mnist_data',one_hot=True)
-        n_batch = mnist.train.num_examples // batch_size
         with tf.device(tf.train.replica_device_setter(
                 worker_device="/job:worker/task:%d" % FLAGS.task_index,
                 cluster=cluster)):
+            mnist = input_data.read_data_sets('mnist_data',one_hot=True)
+            n_batch = mnist.train.num_examples // batch_size
             prin "kaishi jisuan"
             x = tf.placeholder(tf.float32,[None,784])
             y = tf.placeholder(tf.float32,[None,10])
