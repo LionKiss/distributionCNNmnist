@@ -143,6 +143,7 @@ def main(_):
                             sess.run(train_step,feed_dict={x:batch_xs,y:batch_ys,keep_prob:0.8})
                         test_acc = sess.run(accuracy,feed_dict={x:mnist.test.images,y:mnist.test.labels,keep_prob:1.0})
                         print "Iter " + str(step) + ", Testing Accuracy= " + str(test_acc)
+                        step=global_step
 
                 except tf.errors.OutOfRangeError:
                     print("Done training after reading all data")
