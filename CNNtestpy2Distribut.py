@@ -68,14 +68,16 @@ def main(_):
                              task_index=FLAGS.task_index)
 
     if FLAGS.job_name == "ps":
+        print "ps pod join"
         server.join()
     elif FLAGS.job_name == "worker":
+        print "wk pod join"
         mnist = input_data.read_data_sets('mnist_data',one_hot=True)
         n_batch = mnist.train.num_examples // batch_size
         with tf.device(tf.train.replica_device_setter(
                 worker_device="/job:worker/task:%d" % FLAGS.task_index,
                 cluster=cluster)):
-
+            prin "kaishi jisuan"
             x = tf.placeholder(tf.float32,[None,784])
             y = tf.placeholder(tf.float32,[None,10])
             x_image = tf.reshape(x,[-1,28,28,1])
@@ -127,8 +129,8 @@ def main(_):
 
         with sv.managed_session(server.target) as sess:
             step = 0
-            while not sv.should_stop() and step < 51:
-
+            while not sv.should_stop() and step < 3:
+                print "jiedia jisuan "
                 # Get coordinator and run queues to read data
                 coord = tf.train.Coordinator()
                 threads = tf.train.start_queue_runners(coord=coord,sess=sess)
