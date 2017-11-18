@@ -108,7 +108,7 @@ def main(_):
             cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y,logits=prediction))
             
             global_step = tf.Variable(0, name='global_step', trainable=False)
-            train_step = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy，global_step=global_step)
+            train_step = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy,global_step=global_step)
 
 
             correct_prediction = tf.equal(tf.argmax(prediction,1),tf.argmax(y,1))
