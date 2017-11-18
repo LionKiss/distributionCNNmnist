@@ -130,7 +130,7 @@ def main(_):
 
                 # Get coordinator and run queues to read data
                 coord = tf.train.Coordinator()
-                threads = tf.train.start_queue_runners(coord=coord, sess=sess)
+                threads = tf.train.start_queue_runners(coord=coord,sess=sess)
 
                 try:
                     while not coord.should_stop():
