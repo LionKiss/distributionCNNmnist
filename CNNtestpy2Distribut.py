@@ -77,7 +77,7 @@ def main(_):
                 cluster=cluster)):
             mnist = input_data.read_data_sets('mnist_data',one_hot=True)
             n_batch = mnist.train.num_examples // batch_size
-            prin "kaishi jisuan"
+            print "kaishi jisuan"
             x = tf.placeholder(tf.float32,[None,784])
             y = tf.placeholder(tf.float32,[None,10])
             x_image = tf.reshape(x,[-1,28,28,1])
