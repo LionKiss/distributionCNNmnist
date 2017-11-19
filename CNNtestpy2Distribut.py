@@ -140,8 +140,8 @@ def main(_):
                         # Run train op
                         for batch in range(n_batch):         
                             batch_xs,batch_ys =  mnist.train.next_batch(batch_size)
-                            loss_value, step=sess.run(train_step,global_step,feed_dict={x:batch_xs,y:batch_ys,keep_prob:0.8})
-                        
+                            loss_value, step=sess.run([train_step,global_step],feed_dict={x:batch_xs,y:batch_ys,keep_prob:0.8})
+                        step = step // n_batch
                         test_acc = sess.run(accuracy,feed_dict={x:mnist.test.images,y:mnist.test.labels,keep_prob:1.0})
                         
                         print "global_step" + str(global_step)
