@@ -97,8 +97,8 @@ def main(_):
                 try:
                     while not coord.should_stop():
                         # Run train op
-                        batch_xs,batch_ys =  mnist.train.next_batch(batch_size)
-                        _,loss_value, step=sess.run([train_step,loss,global_step],feed_dict={x:batch_xs,y:batch_ys})
+                        batch_xs1,batch_ys1 =  mnist.train.next_batch(batch_size)
+                        _,loss_value, step=sess.run([train_step,loss,global_step],feed_dict={x:batch_xs1,y:batch_ys1})
                         for batch in range(1,n_batch):         
                             batch_xs,batch_ys =  mnist.train.next_batch(batch_size)
                             #_,loss_value, step=sess.run([train_step,loss,global_step],feed_dict={x:batch_xs,y:batch_ys})
