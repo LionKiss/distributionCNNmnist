@@ -99,9 +99,11 @@ def main(_):
                         # Run train op
                         for batch in range(n_batch):         
                             batch_xs,batch_ys =  mnist.train.next_batch(batch_size)
-                            _,loss_value, step=sess.run([train_step,loss,global_step],feed_dict={x:batch_xs,y:batch_ys})
-                        step = step // n_batch
-                        test_acc = sess.run(accuracy,feed_dict={x:mnist.test.images,y:mnist.test.labels})
+                            #_,loss_value, step=sess.run([train_step,loss,global_step],feed_dict={x:batch_xs,y:batch_ys})
+                            sess.run(train_step,loss,feed_dict={x:batch_xs,y:batch_ys})
+                        #step = step // n_batch
+                        #test_acc = sess.run(accuracy,feed_dict={x:mnist.test.images,y:mnist.test.labels})
+                        test_acc,step = sess.run([accuracy,global_step],feed_dict={x:mnist.test.images,y:mnist.test.labels})
                         
                         print "Iter " + str(step) + ", Testing Accuracy= " + str(test_acc)
                         coord.request_stop()
