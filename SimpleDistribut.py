@@ -106,7 +106,7 @@ def main(_):
                         test_acc,step = sess.run([accuracy,global_step],feed_dict={x:mnist.test.images,y:mnist.test.labels})
                         
                         print "Iter " + str(step) + ", Testing Accuracy= " + str(test_acc)
-                        coord.request_stop()
+                        
                         
                 except tf.errors.OutOfRangeError:
                     print("Done training after reading all data")
