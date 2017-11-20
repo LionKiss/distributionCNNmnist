@@ -72,10 +72,16 @@ def main(_):
             
             saver = tf.train.Saver()
             init_op = tf.global_variables_initializer()
+            
+            tf.summary.scalar('loss', loss)
+            tf.summary.scalar('accuracy', accuracy)
+
+            summary_op = tf.summary.merge_all()
 
         sv = tf.train.Supervisor(is_chief=(FLAGS.task_index == 0),
                                  logdir="./checkpoint/",
                                  init_op=init_op,
+                                 summary_op=summary_op,
                                  saver=saver,
                                  global_step=global_step,
                                  save_model_secs=60)
