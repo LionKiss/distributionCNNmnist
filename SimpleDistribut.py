@@ -88,7 +88,7 @@ def main(_):
 
         with sv.managed_session(server.target) as sess:
             step = 0
-            while not sv.should_stop() and step < 3:
+            while not sv.should_stop() and step < 70:
                 print "jiedia jisuan "
                 # Get coordinator and run queues to read data
                 coord = tf.train.Coordinator()
@@ -104,6 +104,7 @@ def main(_):
                         test_acc = sess.run(accuracy,feed_dict={x:mnist.test.images,y:mnist.test.labels})
                         
                         print "Iter " + str(step) + ", Testing Accuracy= " + str(test_acc)
+                        coord.request_stop()
                         
                 except tf.errors.OutOfRangeError:
                     print("Done training after reading all data")
