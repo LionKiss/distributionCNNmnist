@@ -4,6 +4,7 @@ import tensorflow as tf
 import math
 import os
 import numpy as np
+import time
 from tensorflow.examples.tutorials.mnist import input_data
 
 # Define parameters
@@ -144,7 +145,7 @@ def main(_):
                         step = step // n_batch
                         test_acc = sess.run(accuracy,feed_dict={x:mnist.test.images,y:mnist.test.labels,keep_prob:1.0})
                         
-                        print "Iter " + str(step) + ", Testing Accuracy= " + str(test_acc)
+                        print "Time " + str(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))) +"Iter " + str(step) + ", Testing Accuracy= " + str(test_acc)
                         
                 except tf.errors.OutOfRangeError:
                     print("Done training after reading all data")

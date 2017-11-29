@@ -93,9 +93,8 @@ def main(_):
                 # Get coordinator and run queues to read data
                 coord = tf.train.Coordinator()
                 threads = tf.train.start_queue_runners(coord=coord,sess=sess)
-                flag=1
                 try:
-                    while not coord.should_stop() and flag==1:
+                    while not coord.should_stop():
                         # Run train op
                         
                         for batch in range(n_batch):         
@@ -105,8 +104,7 @@ def main(_):
                         step = step // n_batch
                         test_acc = sess.run(accuracy,feed_dict={x:mnist.test.images,y:mnist.test.labels})
                         print "Iter " + str(step) + ", Testing Accuracy= " + str(test_acc)
-                        global flag
-                        flag=0
+
                         
                 except tf.errors.OutOfRangeError:
                     print("Done training after reading all data")
