@@ -130,7 +130,7 @@ def main(_):
 
         with sv.managed_session(server.target) as sess:
             step = 0
-            while not sv.should_stop() and step < 3:
+            while not sv.should_stop() and step < 10000:
                 print "jiedia jisuan "
                 # Get coordinator and run queues to read data
                 coord = tf.train.Coordinator()
